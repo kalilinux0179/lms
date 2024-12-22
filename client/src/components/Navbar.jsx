@@ -30,7 +30,8 @@ const Navbar = () => {
         <div className="container mx-auto h-full">
           <div className="flex items-center justify-between h-full">
             {/* left */}
-            <h1 className="text-3xl font-bold font-sans light:text-orange-500 dark:text-white flex justify-center items-center gap-2">
+            <h1 className="text-3xl font-bold font-sans light:text-orange-500 dark:text-white flex justify-center items-center gap-2 cursor-pointer"
+            onClick={() => navigate("/")}>
             <BookOpenText size={32} />
               LMS</h1>
             {/* right  */}

@@ -75,4 +75,13 @@
 
 * {
   font-family: 'Outfit', sans-serif !important;
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  /* For Webkit browsers */
 }

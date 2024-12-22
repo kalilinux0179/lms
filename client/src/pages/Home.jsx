@@ -5,7 +5,7 @@ import Courses from './Student/Courses'
 const Home = () => {
   return (
     <>
-      <main className='min-h-screen'>
+      <main className='min-h-screen pb-8'>
         <HeroSlider />
         <div className="container mx-auto">
           <Courses />
