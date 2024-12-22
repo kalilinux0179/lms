@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
 import Course from './Course'
+import CardSkeleton from '@/components/CardSkeleton'
 
 const SkeletonCard = () => {
     return (
@@ -16,6 +17,7 @@ const SkeletonCard = () => {
 
 
 const Courses = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const courseArray = [
         {
             "courseThumbnail": "https://www.greenstechnologys.com/images/reactjs.jpg",
@@ -49,18 +51,41 @@ const Courses = () => {
             price: "399"
         }
     ]
-    const isLoading = false
     return (
         <>
             <div className='flex flex-col min-h-96 items-center mt-16 gap-16'>
                 <h1 className='text-4xl font-bold tracking-wider'>Our Courses</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-x-6 gap-y-8'>
-                    {
-                        isLoading ?
-                            Array.from({ length: 4 }).map((_, index) => <SkeletonCard key={index} />) :
-                            courseArray.map((course, index) => <Course key={index} course={course} />)
-                    }
-                </div>
+                {
+                    isLoading ?
+                        (
+                            <>
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-x-6 gap-y-8'>
+                                    {
+                                        Array.from({ length: 4 }).map((_, index) => <CardSkeleton key={index} />)
+                                    }
+                                </div>
+                            </>
+                        ) : (
+                            courseArray.length === 0 ?
+                                (
+                                    <p className='text-2xl font-bold tracking-wider text-center w-full'>No Courses Available</p>
+                                ) : (
+                                    <>
+                                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-x-6 gap-y-8'>
+                                            {
+                                                courseArray.map((course, index) => {
+                                                    return (
+                                                        <Course key={index} course={course} />
+
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
+
+                                )
+                        )
+                }
             </div>
         </>
     )

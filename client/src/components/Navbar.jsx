@@ -61,12 +61,12 @@ const Navbar = () => {
                             Dashboard
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
-                          <DropdownMenuItem className="cursor-pointer">
-                            Account Setting
+                          <DropdownMenuItem className="cursor-pointer" >
+                            <Link to="/profile">Profile</Link>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem className="cursor-pointer">
-                            My Learning
+                          <Link to="/mylearning">My Learning</Link>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem onClick={handleLogOut} className="cursor-pointer">
@@ -77,7 +77,7 @@ const Navbar = () => {
                     </>
 
                   ) : (
-                    <Button asChild>
+                    <Button asChild className="rounded-full px-6">
                       <Link to="/auth" className="font-sans text-[17px] tracking-wider"> Login</Link>
                     </Button>
                   )
