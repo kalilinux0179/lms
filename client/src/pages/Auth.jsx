@@ -68,7 +68,7 @@ export const Auth = () => {
     setLoading(true);
     try {
       const response = await loginApi(loginCreds).unwrap();
-      toast.success(`Welcome back ${response.user.username}`);
+      toast.success(`Welcome Back ${response.user.username}`);
       dispatch(setLogin({ user: response.user })); // Save user data in Redux
       setLoginCreds({
         email:"",
@@ -84,7 +84,7 @@ export const Auth = () => {
   };
   return (
     <>
-      <div className="container mx-auto flex justify-center items-center min-h-screen">
+      <div className="container mx-auto flex justify-center items-start min-h-screen pt-24">
         <Tabs defaultValue="auth" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="register">Register</TabsTrigger>

@@ -17,9 +17,14 @@ const userSchem = new Schema(
       type: String,
       required: true,
     },
-    avatar:{
-        type:String,
-        default:""
+    avatar: {
+      type: String,
+      default: ""
+    },
+    role: {
+      type: String,
+      enum: ["Student", "Instructor"],
+      default: "Student"
     }
   },
   {
