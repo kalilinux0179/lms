@@ -1,14 +1,13 @@
+import HeroSlider from '@/components/HeroSlider'
 import React from 'react'
 
 const Home = () => {
   return (
-   <>
-   <main className='min-h-screen'>
-    <div className="pt-16">
-    home
-    </div>
-   </main>
-   </>
+    <>
+      <main className='min-h-screen'>
+        <HeroSlider />
+      </main>
+    </>
   )
 }
 

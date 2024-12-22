@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { setLogOut } from "@/slices/UserSlice";
+import ModeToggle from "./ModeToggle";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -24,57 +25,64 @@ const Navbar = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   return (
     <>
-      <header className="w-full fixed h-16 shadow-md backdrop-blur-sm">
+      <header className="w-full fixed h-16 backdrop-blur-sm">
         <div className="container mx-auto h-full">
           <div className="flex items-center justify-between h-full">
             {/* left */}
-            <h1 className="text-2xl font-bold">Mart</h1>
+            <h1 className="text-2xl font-bold font-sans">Mart</h1>
             {/* right  */}
-            {
-              isAuthenticated ? (
-                <>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <div className="flex justify-center items-center gap-4 cursor-pointer">
-                        <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        <p className="text-[17px] tracking-wide capitalize">
-                          {
-                            user.username
-                          }
-                        </p>
-                      </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56">
-                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer">
-                        Dashboard
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer">
-                        Account Setting
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer">
-                        My Learning
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={handleLogOut} className="cursor-pointer">
-                        Log out
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </>
+            <div className="flex justify-center items-center gap-4">
+              <div>
+                {
+                  isAuthenticated ? (
+                    <>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <div className="flex justify-center items-center gap-4 cursor-pointer">
+                            <Avatar>
+                              <AvatarImage src="https://github.com/shadcn.png" />
+                              <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+                            <p className="text-[17px] tracking-wide capitalize">
+                              {
+                                user.username
+                              }
+                            </p>
+                          </div>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem className="cursor-pointer">
+                            Dashboard
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem className="cursor-pointer">
+                            Account Setting
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem className="cursor-pointer">
+                            My Learning
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem onClick={handleLogOut} className="cursor-pointer">
+                            Log out
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </>
 
-              ) : (
-                <Button asChild>
-                  <Link to="/auth"> Login</Link>
-                </Button>
-              )
-            }
+                  ) : (
+                    <Button asChild>
+                      <Link to="/auth" className="font-sans text-[17px] tracking-wider"> Login</Link>
+                    </Button>
+                  )
+                }
+              </div>
+              <div>
+                <ModeToggle />
+              </div>
+            </div>
           </div>
         </div>
       </header>
