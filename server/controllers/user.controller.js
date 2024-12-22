@@ -1,6 +1,8 @@
 import { User } from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+import GenerateToken from "../utils/GenerateToken.js";
 
+// register
 export const register = async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
@@ -30,6 +32,7 @@ export const register = async (req, res) => {
   });
 };
 
+// login
 export const login = async (req, res) => {
   const { email, password } = await req.body;
   if (!email || !password) {
@@ -43,11 +46,7 @@ export const login = async (req, res) => {
   if (user) {
     const isPasswordMatch = await bcryptjs.compare(password, user.password);
     if (isPasswordMatch) {
-      return res.status(200).json({
-        success: true,
-        message: "Login successfull",
-        user,
-      });
+      GenerateToken(res, user);
     } else {
       return res.status(400).json({
         success: false,
@@ -59,5 +58,25 @@ export const login = async (req, res) => {
       success: false,
       message: "Invalid Credentials",
     });
+  }
+};
+
+// logout
+export const logout = async (req, res) => {
+  try {
+    return res.status(200)
+    .cookie("token", null, {
+      maxAge: 0,
+    })
+    .json({
+success:true,
+message:"Logout Successfull"
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      success:false,
+      message:"Internal Server Error"
+    })
   }
 };

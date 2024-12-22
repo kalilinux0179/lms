@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(
   cors({
-    path: "*",
+    origin: "http://localhost:5173", // Explicitly specify the frontend origin
+    credentials: true, // Allow cookies to be sent with requests
   })
 );
 

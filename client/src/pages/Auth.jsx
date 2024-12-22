@@ -68,16 +68,17 @@ export const Auth = () => {
     setLoading(true);
     try {
       const response = await loginApi(loginCreds).unwrap();
+      console.log(response)
       toast.success(`Welcome Back ${response.user.username}`);
       dispatch(setLogin({ user: response.user })); // Save user data in Redux
       setLoginCreds({
         email:"",
         password:""
       })
-      navigate("/");
+      // navigate("/");
     } catch (error) {
-      console.error(error.data.message);
-      toast.error(`${error.data?.message}`);
+      console.error(error);
+      // toast.error(`${error.data?.message}`);
     } finally {
       setLoading(false);
     }
