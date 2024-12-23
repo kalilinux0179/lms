@@ -75,7 +75,7 @@ export const Auth = () => {
         email:"",
         password:""
       })
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error(error);
       // toast.error(`${error.data?.message}`);
